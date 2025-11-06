@@ -1,4 +1,6 @@
-#pragma once
+#ifndef EXCEPTION_HPP
+#define EXCEPTION_HPP
+
 #include <string>
 
 namespace exc
@@ -30,4 +32,24 @@ namespace exc
         explicit dimension_mismatch(const std::string& msg)
             : Exception("Dimension mismatch: " + msg) {}
     };
-}
+
+    struct unspecified_data : public Exception
+    {
+        explicit unspecified_data(const std::string& msg)
+            : Exception("Unspecified data: " + msg) {}
+    };
+
+    struct unknown_data : public Exception
+    {
+        explicit unknown_data(const std::string& msg)
+            : Exception("Unknown data: " + msg) {}
+    };
+
+    struct undefined_data : public Exception
+    {
+        explicit undefined_data(const std::string& msg)
+            : Exception("Undefined data: " + msg) {}
+    };
+} //namespace exc
+
+#endif //EXCEPTION_HPP
