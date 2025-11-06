@@ -7,81 +7,81 @@ namespace alg
 {
 
     template <typename T>
-    auto inc(T &t);
+    auto inc(T &t) -> T;
 
     // Скаляры
     template <typename T>
-    auto sum(const T &t1, const T &t2);
+    auto sum(const T &t1, const T &t2) -> T;
 
     template <typename T>
-    auto sub(const T &t1, const T &t2);
+    auto sub(const T &t1, const T &t2) -> T;
 
     template <typename T>
-    auto mul(const T &t1, const T &t2);
+    auto mul(const T &t1, const T &t2) -> T;
 
     template <typename T>
-    auto pow(const T &t, std::size_t n);
+    auto pow(const T &t, std::size_t n) -> T;
 
     // Векторы
     template <typename T>
-    auto sum(const std::vector<T> &v1, const std::vector<T> &v2);
+    auto sum(const std::vector<T> &v1, const std::vector<T> &v2) -> std::vector<T>;
 
     template <typename T>
-    auto sub(const std::vector<T> &v1, const std::vector<T> &v2);
+    auto sub(const std::vector<T> &v1, const std::vector<T> &v2) -> std::vector<T>;
 
     template <typename T>
-    auto mul(const std::vector<T> &v, const T &scalar);
+    auto mul(const std::vector<T> &v, const T &scalar) -> std::vector<T>;
 
     template <typename T>
-    auto dot(const std::vector<T> &v1, const std::vector<T> &v2);
+    auto dot(const std::vector<T> &v1, const std::vector<T> &v2) -> T;
 
     template <typename T>
-    auto pow(const std::vector<T> &v, std::size_t n);
+    auto pow(const std::vector<T> &v, std::size_t n) -> std::vector<T>;
 
     // Матрицы
     template <typename T>
-    auto sum(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2);
+    auto sum(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>;
 
     template <typename T>
-    auto sub(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2);
+    auto sub(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>;
 
     template <typename T>
-    auto mul(const std::vector<std::vector<T>> &m, const T &scalar);
+    auto mul(const std::vector<std::vector<T>> &m, const T &scalar) -> std::vector<std::vector<T>>;
 
     template <typename T>
-    auto dot(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2);
+    auto dot(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>;
 
     template <typename T>
-    auto pow(const std::vector<std::vector<T>> &m, std::size_t n);
+    auto pow(const std::vector<std::vector<T>> &m, std::size_t n) -> std::vector<std::vector<T>>;
 }
 
 template <typename T>
-auto alg::inc(T &t)
+auto alg::inc(T &t) -> T
 {
     return ++t;
 }
 // Реализации для скаляров
 
 template <typename T>
-auto alg::sum(const T &t1, const T &t2)
+auto alg::sum(const T &t1, const T &t2) -> T
 {
     return t1 + t2;
 }
 
 template <typename T>
-auto alg::sub(const T &t1, const T &t2)
+auto alg::sub(const T &t1, const T &t2) -> T
 {
     return t1 - t2;
 }
 
 template <typename T>
-auto alg::mul(const T &t1, const T &t2)
+auto alg::mul(const T &t1, const T &t2) -> T
 {
     return t1 * t2;
 }
 
 template <typename T>
-auto alg::pow(const T &t, std::size_t n)
+auto alg::pow(const T &t, std::size_t n) -> T
 {
     if (n == 0)
     {
@@ -97,7 +97,7 @@ auto alg::pow(const T &t, std::size_t n)
 
 // Реализации для векторов
 template <typename T>
-auto alg::sum(const std::vector<T> &v1, const std::vector<T> &v2)
+auto alg::sum(const std::vector<T> &v1, const std::vector<T> &v2) -> std::vector<T>
 {
     if (v1.size() != v2.size())
     {
@@ -112,7 +112,7 @@ auto alg::sum(const std::vector<T> &v1, const std::vector<T> &v2)
 }
 
 template <typename T>
-auto alg::sub(const std::vector<T> &v1, const std::vector<T> &v2)
+auto alg::sub(const std::vector<T> &v1, const std::vector<T> &v2) -> std::vector<T>
 {
     if (v1.size() != v2.size())
     {
@@ -127,7 +127,7 @@ auto alg::sub(const std::vector<T> &v1, const std::vector<T> &v2)
 }
 
 template <typename T>
-auto alg::mul(const std::vector<T> &v, const T &scalar)
+auto alg::mul(const std::vector<T> &v, const T &scalar) -> std::vector<T>
 {
     std::vector<T> r(v.size());
     for (std::size_t i = 0; i < v.size(); ++i)
@@ -138,7 +138,7 @@ auto alg::mul(const std::vector<T> &v, const T &scalar)
 }
 
 template <typename T>
-auto alg::dot(const std::vector<T> &v1, const std::vector<T> &v2)
+auto alg::dot(const std::vector<T> &v1, const std::vector<T> &v2) -> T
 {
     if (v1.size() != v2.size())
     {
@@ -153,7 +153,7 @@ auto alg::dot(const std::vector<T> &v1, const std::vector<T> &v2)
 }
 
 template <typename T>
-auto alg::pow(const std::vector<T> &v, std::size_t n)
+auto alg::pow(const std::vector<T> &v, std::size_t n) -> std::vector<T>
 {
     std::vector<T> r(v.size());
     for (std::size_t i = 0; i < v.size(); ++i)
@@ -165,7 +165,7 @@ auto alg::pow(const std::vector<T> &v, std::size_t n)
 
 // Реализации для матриц
 template <typename T>
-auto alg::sum(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2)
+auto alg::sum(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>
 {
     if (m1.size() != m2.size() || m1[0].size() != m2[0].size())
     {
@@ -183,7 +183,7 @@ auto alg::sum(const std::vector<std::vector<T>> &m1, const std::vector<std::vect
 }
 
 template <typename T>
-auto alg::sub(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2)
+auto alg::sub(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>
 {
     if (m1.size() != m2.size() || m1[0].size() != m2[0].size())
     {
@@ -201,7 +201,7 @@ auto alg::sub(const std::vector<std::vector<T>> &m1, const std::vector<std::vect
 }
 
 template <typename T>
-auto alg::mul(const std::vector<std::vector<T>> &m, const T &scalar)
+auto alg::mul(const std::vector<std::vector<T>> &m, const T &scalar) -> std::vector<std::vector<T>>
 {
     std::vector<std::vector<T>> r(m.size(), std::vector<T>(m[0].size()));
     for (std::size_t i = 0; i < m.size(); ++i)
@@ -215,7 +215,7 @@ auto alg::mul(const std::vector<std::vector<T>> &m, const T &scalar)
 }
 
 template <typename T>
-auto alg::dot(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2)
+auto alg::dot(const std::vector<std::vector<T>> &m1, const std::vector<std::vector<T>> &m2) -> std::vector<std::vector<T>>
 {
     if (m1[0].size() != m2.size())
     {
@@ -236,7 +236,7 @@ auto alg::dot(const std::vector<std::vector<T>> &m1, const std::vector<std::vect
 }
 
 template <typename T>
-auto alg::pow(const std::vector<std::vector<T>> &m, std::size_t n)
+auto alg::pow(const std::vector<std::vector<T>> &m, std::size_t n) -> std::vector<std::vector<T>>
 {
     if (m.empty() || m.size() != m[0].size())
     {
