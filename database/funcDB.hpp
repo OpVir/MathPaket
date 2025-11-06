@@ -4,22 +4,29 @@
 #include <string>
 #include <unordered_map>
 #include <functional>
-
+#include <variant>
+#include <any>
+#include <iostream>
 namespace database
 {
-    template<typename ..._T>
     class FuncContainer
     {
     private:
-    using SupportTypes = _T...;
-    std::unordered_map<std::string, std::function<SupportTypes(SupportTypes)>> funcs;
+    std::unordered_map<std::string, std::any> funcs;
     public:
-
-        auto get(std::string name) -> std::function;
         template<typename ReturnType, typename ...ParamsTypes>
-        auto set(std::string name, std::function<ReturnType(ParamsTypes...>)) -> void;
+        auto get(std::string name) -> std::function<ReturnType(ParamsTypes...)>{
+            auto it = funcs.find(name);
+            if (it == funcs.end()) {
+                throw std::runtime_error("Function not found: " + name);
+            }
+            return std::any_cast<std::function<ReturnType(ParamsTypes...)>>(it->second);        
+        }
+        template<typename ReturnType, typename ...ParamsTypes>
+        auto set(std::string name, std::function<ReturnType(ParamsTypes...)> func) -> void{
+            funcs[name] = func;
+        }
     };
     
 } // namespace database
-
 #endif
